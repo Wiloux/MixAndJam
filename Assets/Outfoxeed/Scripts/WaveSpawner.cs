@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
+// using Pathfinding;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -30,7 +30,9 @@ public class WaveSpawner : MonoBehaviour
             Debug.Log(spawnPos);
 
             GameObject ennemy = Instantiate(ennemyPrefab, spawnPos, Quaternion.identity);
-            ennemy.GetComponent<AIDestinationSetter>().target = player;
+            ennemy.GetComponent<EnemyAI>().target = player;
+
+            GameHandler.instance.AddAliveEnnemyToCounter();
         }
         wave++;
     }
