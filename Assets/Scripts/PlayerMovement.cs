@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed;
+    Vector3 tempVect;
 
     public int maxwpn;
     int currentwpn;
@@ -23,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
-
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
+        tempVect = new Vector3(x, y, 0);
+        tempVect = new Vector2(tempVect.x, tempVect.y).normalized;
         if (Input.GetMouseButtonDown(1))
         {
             currentwpn++;
@@ -36,10 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (x != 0 || y != 0)
         {
-            Vector3 tempVect = new Vector3(x, y, 0);
-            tempVect = tempVect.normalized * speed * Time.deltaTime;
-
-            rb.MovePosition(transform.position + tempVect);
+            rb.velocity = new Vector2(tempVect.x * speed, tempVect.y * speed);
         }
         else
         {
@@ -84,14 +83,18 @@ public class PlayerMovement : MonoBehaviour
             Slash.SetActive(true);
             Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = transform.position - MousePos;
-            Debug.Log(direction);
             Quaternion PointerQ = Quaternion.LookRotation(Vector3.forward, -direction);
             //PointerQ.y = -PointerQ.y;
-          //  Vector3 North = new Vector3(0, 0, GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles.y);
+            //  Vector3 North = new Vector3(0, 0, GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles.y);
             Slash.transform.rotation = PointerQ;
             time += Time.deltaTime / SlashTime;
             yield return null;
         }
         Slash.SetActive(false);
+    }
+
+    public void OnPlayerDeath()
+    {
+
     }
 }
