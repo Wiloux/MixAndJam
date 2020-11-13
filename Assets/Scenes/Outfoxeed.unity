@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 1562624057}
   - component: {fileID: 1562624059}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff22d3faf9436343bc38ea811b752dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ennemyCounter: 0
+  aliveEnemyCounter: 0
+  screenVisibleEnemyCounter: 0
 --- !u!1 &1699302114
 GameObject:
   m_ObjectHideFlags: 0

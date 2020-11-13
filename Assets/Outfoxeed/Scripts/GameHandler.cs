@@ -9,9 +9,20 @@ public class GameHandler : MonoBehaviour
         instance = this;
     }
 
-    public int ennemyCounter = 0;
+    // Enemies Counter 
+    public int aliveEnemyCounter = 0;
+    public int GetAliveEnemyCounter(){return aliveEnemyCounter;}
+    public void AddAliveEnnemyToCounter(){aliveEnemyCounter++;}
+    public void RemoveAliveEnnemyToCounter(){aliveEnemyCounter--;}
 
-    public int GetEnnemyCounter(){return ennemyCounter;}
-    public void AddEnnemyToCounter(){ennemyCounter++;}
-    public void RemoveEnnemyToCounter(){ennemyCounter--;}
+    // Visible Enemies Counter
+    public int screenVisibleEnemyCounter = 0;
+    public int GetScreenVisibleEnemyCounter(){return screenVisibleEnemyCounter;}
+    public void AddScreenVisibleEnemyToCounter(){screenVisibleEnemyCounter++;}
+    public void RemoveScreenVisibleEnemyToCounter(){screenVisibleEnemyCounter--;}
+
+    private void Update() {
+        Debug.Log("Alive Enemy Counter = " + aliveEnemyCounter);
+        Debug.Log("Screen Visible Enemy Counter = " + screenVisibleEnemyCounter);
+    }
 }
