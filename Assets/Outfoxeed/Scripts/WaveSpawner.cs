@@ -31,6 +31,9 @@ public class WaveSpawner : MonoBehaviour
 
             GameObject ennemy = Instantiate(ennemyPrefab, spawnPos, Quaternion.identity);
             ennemy.GetComponent<AIDestinationSetter>().target = player;
+
+            GameHandler.instance.AddEnnemyToCounter();
+            Debug.Log(GameHandler.instance.ennemyCounter);
         }
         wave++;
     }
