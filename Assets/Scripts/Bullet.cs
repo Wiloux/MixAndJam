@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
+            CameraScript.instance.shakeDuration = 0.1f;
             Destroy(collision.gameObject);
         }
 
