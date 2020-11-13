@@ -7,8 +7,16 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform target;
 
+    public float dashRange = 2f;
+    public float dashCancelRange = 3f;
+    public float dashForce = 500f;
+    public float attackRange = 0.75f;
+    public float attackCooldown = 2.5f;
+    private float nextAttackTime = 0;
+    private bool isDashing;
+
     public float speed = 200f;
-    public float nextWaypointDistance = 3f;
+    public float nextWaypointDistance = 2f;
 
     Path path;
     int currentWaypoint = 0;
@@ -16,13 +24,14 @@ public class EnemyAI : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rb;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("UpdatePath",0,0.5f);
+        InvokeRepeating("UpdatePath",0,0.25f);
     }
 
     void UpdatePath()
@@ -42,6 +51,43 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
+        float distance = Vector2.Distance(target.position, transform.position); 
+        if(distance < attackRange)
+        {
+            if(Time.time > nextAttackTime)
+            {
+                // Attack
+                Debug.Log("Attack");
+                animator.SetBool("isAttacking", true);
+                // Set time for next attack
+                nextAttackTime = Time.time + attackCooldown;
+            }
+            else ChasePlayer();
+        }
+        else if(distance < dashRange)
+        {
+            if(Time.time > nextAttackTime)
+            {
+                // Dash + attack
+                isDashing = true;
+                animator.SetBool("isAttacking", true);
+                rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
+                // Set time for next attack
+                nextAttackTime = Time.time + attackCooldown;
+            }
+            else ChasePlayer();
+        }else ChasePlayer();
+    }
+
+    public void OnDeath()
+    {
+
+    }
+
+    private void ChasePlayer()
+    {
+        animator.SetBool("isAttacking", false);
         if(path == null)return;
         if(currentWaypoint >= path.vectorPath.Count)
         {
