@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{2AB8FAAF-BEEE-4601-BE3B-68CFDADC229C}" SchemaVersion="97">
+	<InteractiveMusic>
+		<WorkUnit Name="Default Work Unit" ID="{2AB8FAAF-BEEE-4601-BE3B-68CFDADC229C}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="BassDrum" ID="{C04DCBFC-9282-4DC7-A6B9-1BF522D09ECB}" ShortID="976385624">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{8EF4EC54-BB33-4F65-B769-F7BF12A21125}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73ECC90E-9592-486D-AA47-51FAAB40AD30}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="SimpleBassDrum" ID="{6EE31E5C-0C2F-4524-B977-CAED9AFAD35D}" ShortID="26306369">
+							<PropertyList>
+								<Property Name="GridFrequencyPreset" Type="int16" Value="53"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{8EF4EC54-BB33-4F65-B769-F7BF12A21125}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73ECC90E-9592-486D-AA47-51FAAB40AD30}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="SimpleBassDrum" ID="{7DD377DD-1050-45AD-B0D4-EC33B5F913C6}" ShortID="156855397">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{73ECC90E-9592-486D-AA47-51FAAB40AD30}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SimpleBassDrum" ID="{C2904C95-73A6-49A8-8604-32528AF8E410}">
+											<Language>SFX</Language>
+											<AudioFile>SimpleBassDrum.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="227890267"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{0A065F45-C711-4C0B-BBCC-BEA3CCC312F1}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{DBACCB1B-E6B9-421A-9B03-D688C8DAB31C}">
+											<ClipList>
+												<MusicClip Name="SimpleBassDrum" ID="{A753DCAA-0D65-4B48-881F-300762123337}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="500"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="SimpleBassDrum" ID="{C2904C95-73A6-49A8-8604-32528AF8E410}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
+							</ChildrenList>
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{05CAAF3B-5948-480C-B5CE-0C3F511D2D80}"/>
+								<MusicCue Name="Exit Cue" ID="{3A72B678-6AA8-42EA-9113-1F9F451DE245}">
+									<PropertyList>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="500"/>
+									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{4E8C8F32-DC4A-46A0-B3D4-EFA3B393E8FF}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{7F395EAE-CCD8-41E4-88B3-D94F6B152C5D}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{32A7670D-FBDA-4EE3-B582-076A3C3B5EF8}" ShortID="535005001">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{CA813C94-5BBB-4985-A74E-4BD70AA9EF81}" ShortID="900416563">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="SimpleBassDrum" ID="{6EE31E5C-0C2F-4524-B977-CAED9AFAD35D}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>
