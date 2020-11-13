@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D8E294A0-F55F-4FA3-9EBC-25359C9DF3C8}" SchemaVersion="97">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{D8E294A0-F55F-4FA3-9EBC-25359C9DF3C8}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Music" ID="{556593E0-BE3A-4C4F-BF2D-6DC6A90CF037}" ShortID="11069252">
+					<ChildrenList>
+						<Event Name="SimpleBassDrum" ID="{6B584612-083F-4417-A2C6-DD997B2E06EA}">
+							<ChildrenList>
+								<Action Name="" ID="{1BB3B599-F0F7-4C4E-8A85-9C8CB8A07284}" ShortID="614563214">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="BassDrum" ID="{C04DCBFC-9282-4DC7-A6B9-1BF522D09ECB}" WorkUnitID="{2AB8FAAF-BEEE-4601-BE3B-68CFDADC229C}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
