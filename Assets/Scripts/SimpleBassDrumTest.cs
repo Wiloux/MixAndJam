@@ -5,8 +5,11 @@ using UnityEngine;
 public class SimpleBassDrumTest : MonoBehaviour
 {
     // Start is called before the first frame update
+    public uint test;
     void Start()
     {
-        AkSoundEngine.PostEvent("SimpleBassDrum", gameObject);
+       test = AkSoundEngine.PostEvent("SimpleBassDrum", gameObject);
     }
+
+
 }
