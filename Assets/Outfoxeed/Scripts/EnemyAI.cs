@@ -5,8 +5,7 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform target;
-
+    // Attack Vars
     public float dashRange = 2f;
     public float dashCancelRange = 3f;
     public float dashForce = 500f;
@@ -15,21 +14,30 @@ public class EnemyAI : MonoBehaviour
     private float nextAttackTime = 0;
     private bool isDashing;
 
+    // Movements Vars
+    public Transform target;
     public float speed = 200f;
     public float nextWaypointDistance = 2f;
-
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
+    //Death vars
+    public GameObject deathParticles;
+    public bool isDying;
+    public bool isDead;
+
+    // Components vars
     Seeker seeker;
     Rigidbody2D rb;
     public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        isDead = false;
 
         InvokeRepeating("UpdatePath",0,0.25f);
     }
@@ -51,38 +59,47 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        float distance = Vector2.Distance(target.position, transform.position); 
-        if(distance < attackRange)
+        if (!isDying)
         {
-            if(Time.time > nextAttackTime)
+            float distance = Vector2.Distance(target.position, transform.position);
+            if (distance < attackRange)
             {
-                // Attack
-                Debug.Log("Attack");
-                animator.SetBool("isAttacking", true);
-                // Set time for next attack
-                nextAttackTime = Time.time + attackCooldown;
+                if (Time.time > nextAttackTime)
+                {
+                    // Attack
+                    Debug.Log("Attack");
+                    animator.SetBool("isAttacking", true);
+                    // Set time for next attack
+                    nextAttackTime = Time.time + attackCooldown;
+                }
+                else ChasePlayer();
+            }
+            else if (distance < dashRange)
+            {
+                if (Time.time > nextAttackTime)
+                {
+                    // Dash + attack
+                    isDashing = true;
+                    animator.SetBool("isAttacking", true);
+                    rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
+                    // Set time for next attack
+                    nextAttackTime = Time.time + attackCooldown;
+                }
+                else ChasePlayer();
             }
             else ChasePlayer();
         }
-        else if(distance < dashRange)
-        {
-            if(Time.time > nextAttackTime)
-            {
-                // Dash + attack
-                isDashing = true;
-                animator.SetBool("isAttacking", true);
-                rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
-                // Set time for next attack
-                nextAttackTime = Time.time + attackCooldown;
-            }
-            else ChasePlayer();
-        }else ChasePlayer();
+        else if (!isDead) OnDeath();
     }
 
     public void OnDeath()
     {
-
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 5f);
+        animator.SetBool("isDead", true);
+        GameHandler.instance.RemoveAliveEnemyToCounter();
+        isDead = true;
+        Destroy(gameObject, 5f);
     }
 
     private void ChasePlayer()
