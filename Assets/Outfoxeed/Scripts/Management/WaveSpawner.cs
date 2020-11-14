@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+    public static WaveSpawner instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public Transform player;
 
     public GameObject[] enemyPrefabs;
-    [SerializeField] private int wave = 1;
+    public int wave = 1;
     public Transform spawnsParent;
 
     // Start is called before the first frame update
