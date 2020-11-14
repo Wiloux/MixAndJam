@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6691826167258804745}
   - component: {fileID: 5897417540979609362}
   - component: {fileID: 38787302616241138}
+  - component: {fileID: 1678672131997836161}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Untagged
@@ -101,7 +102,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.07
 --- !u!114 &6691826167258804745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &38787302616241138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,5 +165,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 200
-  nextWaypointDistance: 3
+  dashRange: 2
+  dashCancelRange: 3
+  dashForce: 5
+  attackRange: 1.5
+  attackCooldown: 2.5
+  speed: 300
+  nextWaypointDistance: 2
+  animator: {fileID: 1678672131997836161}
+--- !u!95 &1678672131997836161
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691826167258804788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 79d97e1b0e43cf74da3ac1e687f260fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
