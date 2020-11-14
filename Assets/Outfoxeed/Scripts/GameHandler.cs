@@ -13,15 +13,19 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
-        if (isGamePaused) { canvas.SetActive(true); Camera.main.GetComponent<AudioSource>().Pause(); }
-        else { canvas.SetActive(false); Camera.main.GetComponent<AudioSource>().UnPause(); }
+        if (isGamePaused) { pauseMenu.SetActive(true); Camera.main.GetComponent<AudioSource>().Pause(); }
+        else { pauseMenu.SetActive(false); Camera.main.GetComponent<AudioSource>().UnPause(); }
     }
 
-    // Pause menu 
-    public GameObject canvas;
+    // UI
+        // Pause Menu
+    public GameObject pauseMenu;
     public bool isGamePaused = false;
     public bool IsGamePaused() { return isGamePaused; }
     public void ResumeGame() { isGamePaused = !isGamePaused; if (!isGamePaused) Time.timeScale = 1f; else Time.timeScale = 0f; }
+        // Game Over Menu
+    public GameObject gameOverMenu;
+    public void DisplayGameOver() { gameOverMenu.SetActive(true); }
 
     // Score
     public int score = 0;
@@ -29,7 +33,7 @@ public class GameHandler : MonoBehaviour
     public void AddScore(int plus) { score += plus; }
     public void RemoveScore(int minus) { score += minus; }
         // Highscore
-    [SerializeField] protected int highScore;
+    public int highScore;
     public void SaveHighScore() { if (score > highScore) { PlayerPrefs.SetInt("HighScore", score); highScore = score; } }
 
     // Enemies Counter 
