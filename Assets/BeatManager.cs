@@ -25,14 +25,8 @@ public class BeatManager : MonoBehaviour
         loopsLeftUntilNextBeat = AllDifferentLoops[0].LoopTime;
 
         anim = GetComponent<Animator>();
-        if (AllDifferentLoops[0].BeatType == 0)
-        {
-            anim.SetTrigger("Beat1");
-        }
-        else
-        {
-            anim.SetTrigger("Beat2");
-        }
+        anim.SetTrigger("Beat" + AllDifferentLoops[0].BeatType.ToString());
+
         beatsPerLoop = AllDifferentLoops[0].numberofBeats;
 
         secPerBeat = currentsongBMP / 60f;
@@ -48,6 +42,7 @@ public class BeatManager : MonoBehaviour
 
         if (Time.time > nextActionTime)
         {
+            Debug.Log("a");
             beatTimesSinceStart++;
             if (beatTimesSinceStart % beatsPerLoop == 0)
             {
@@ -64,16 +59,8 @@ public class BeatManager : MonoBehaviour
                 loopsLeftUntilNextBeat = AllDifferentLoops[i].LoopTime;
 
                 Debug.Log("New beat!" + AllDifferentLoops[i].BeatType);
-
-                if (AllDifferentLoops[i].BeatType == 0)
-                {
-                    anim.SetTrigger("Beat1");
-                }
-                else
-                {
-                    anim.SetTrigger("Beat2");
-                }
-
+                anim.SetTrigger("Beat" + AllDifferentLoops[i].BeatType.ToString());
+        
             }
             nextActionTime += secsBtwActions;
             // execute block of code here
