@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public Transform player;
 
-    public GameObject ennemyPrefab;
+    public GameObject[] enemyPrefabs;
     [SerializeField] private int wave = 1;
     public Transform spawnsParent;
 
@@ -20,7 +20,6 @@ public class WaveSpawner : MonoBehaviour
     void Update()
     {
         int enemyCounter = GameHandler.instance.GetAliveEnemyCounter();
-        Debug.Log(enemyCounter);
         if(enemyCounter == 0)
         {
             SpawnWave();
@@ -33,9 +32,12 @@ public class WaveSpawner : MonoBehaviour
         {
             Vector3 offset = (UnityEngine.Random.insideUnitCircle).normalized * 3f;
             Vector3 spawnPos = spawnsParent.GetChild(Random.Range(0,spawnsParent.childCount)).position + offset;
-            Debug.Log(spawnPos);
+            //Debug.Log(spawnPos);
 
-            GameObject ennemy = Instantiate(ennemyPrefab, spawnPos, Quaternion.identity);
+            GameObject prefab = enemyPrefabs[0];
+            int random = Random.Range(0, 4);
+            if (random == 0) prefab = enemyPrefabs[1];
+            GameObject ennemy = Instantiate(prefab, spawnPos, Quaternion.identity);
             ennemy.GetComponent<EnemyAI>().target = player;
 
             GameHandler.instance.AddAliveEnemyToCounter();

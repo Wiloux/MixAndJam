@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
@@ -6,12 +7,10 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
     // Attack Vars
-    public float dashRange = 2f;
-    public float dashCancelRange = 3f;
-    public float dashForce = 500f;
     public float attackRange = 0.75f;
     public float attackCooldown = 2.5f;
-    private float nextAttackTime = 0;
+    protected float nextAttackTime = 0;
+    public float secondActionRange = 2f;
 
     // Movements Vars
     public Transform target;
@@ -27,8 +26,12 @@ public class EnemyAI : MonoBehaviour
 
     // Components vars
     Seeker seeker;
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     public Animator animator;
+
+    // Action vars
+    public Action AttackAction;
+    public Action SecondAction;
 
     // Start is called before the first frame update
     void Start()
@@ -56,49 +59,30 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!isDead)
+        if (!isDead)
         {
+            bool canAttack = CanAttack();
             float distance = Vector2.Distance(target.position, transform.position);
+
             if (distance < attackRange)
             {
-                if (Time.time > nextAttackTime)
-                {
-                    Attack();
-                }
-                else ChasePlayer();
-            }
-            else if (distance < dashRange)
-            {
-                if (Time.time > nextAttackTime)
-                {
-                    Dash();
-                }
-                else ChasePlayer();
+                if (canAttack) AttackAction?.Invoke();
             }
             else
             {
                 ChasePlayer();
-            }     
+                if (distance < secondActionRange)
+                {
+                    if (canAttack) SecondAction?.Invoke();
+                }
+            }
         }
     }
 
-    private void Dash()
-    {
-        // Dash
-        rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
-        // Attack
-        Attack();
-    }
-    private void Attack()
-    {
-        // Attack
-        Debug.Log("Attack");
-        animator.SetBool("isAttacking", true);
-        // Set time for next attack
-        nextAttackTime = Time.time + attackCooldown;
-    }
+    protected bool CanAttack() { return Time.time > nextAttackTime; }
+    protected void SetNextAttackTime() { nextAttackTime = Time.time + attackCooldown; }
 
-    private void ChasePlayer()
+    protected void ChasePlayer()
     {
         animator.SetBool("isAttacking", false);
         if (path == null) return;

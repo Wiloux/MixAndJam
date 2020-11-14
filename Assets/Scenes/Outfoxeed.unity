@@ -1313,8 +1313,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 899595134}
-  ennemyPrefab: {fileID: 6691826167258804788, guid: 0122306befec47444893fb8e74f54c41,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 6691826167258804788, guid: f587fd0b53be3da46a0c6ce1926db70f, type: 3}
+  - {fileID: 6691826167258804788, guid: 000b9201e2ce5034988a41f8005cc8bc, type: 3}
   wave: 1
   spawnsParent: {fileID: 5149065}
 --- !u!114 &1627194723
