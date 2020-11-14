@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangeEnemy : EnemyAI
 {
     public GameObject projectilePrefab;
+    public Transform firePoint;
     private void Awake()
     {
         AttackAction = GetPlayerInsight;
@@ -15,7 +16,9 @@ public class RangeEnemy : EnemyAI
         Vector2 targetDir = (target.position - transform.position).normalized;
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, targetDir, attackRange);
-        if (hit.transform.CompareTag("Player")){Shoot(targetDir);}
+        Debug.Log(hit.transform.name);
+        if(null != hit)
+            if (hit.transform.CompareTag("Player")){Shoot(targetDir);}
         else ChasePlayer();
     }
     void Shoot(Vector2 direction)
@@ -25,7 +28,7 @@ public class RangeEnemy : EnemyAI
         // Set time for next attack
         SetNextAttackTime();
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         projectile.GetComponent<EnemyBullet>().dir = direction;
     }
 }

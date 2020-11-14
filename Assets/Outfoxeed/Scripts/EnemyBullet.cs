@@ -16,7 +16,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag != "Ennemy")
+        if (collision.transform.tag != "Enemy")
         {
             Debug.Log(collision.transform.tag);
             Destroy(gameObject);

@@ -38,6 +38,7 @@ public class EnemyAI : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        nextAttackTime = attackCooldown;
         isDead = false;
 
         InvokeRepeating("UpdatePath", 0, 0.25f);
