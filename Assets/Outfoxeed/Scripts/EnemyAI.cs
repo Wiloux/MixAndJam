@@ -119,7 +119,9 @@ public class EnemyAI : MonoBehaviour
         Destroy(particles, 5f);
         // Animator
         animator.SetBool("isDead", true);
-
+        //if (GetComponent<RangeEnemy>() != null)
+        //    BeatManager.instance.RangeEnemies.Remove(GetComponent<RangeEnemy>());
+        GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.80f, 1.10f);
         GetComponent<AudioSource>().PlayOneShot(deathsfx);
         // Game Handler
         GameHandler.instance.RemoveAliveEnemyToCounter();

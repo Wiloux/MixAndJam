@@ -36,9 +36,10 @@ public class WaveSpawner : MonoBehaviour
 
             GameObject prefab = enemyPrefabs[0];
             int random = Random.Range(0, 4);
-            if (random == 0) prefab = enemyPrefabs[1];
-            GameObject ennemy = Instantiate(prefab, spawnPos, Quaternion.identity);
-            ennemy.GetComponent<EnemyAI>().target = player;
+            if (random == 0) { prefab = enemyPrefabs[1];}
+            GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+         //   if(random == 0) { BeatManager.instance.RangeEnemies.Add(enemy.GetComponent<RangeEnemy>()); }
+            enemy.GetComponent<EnemyAI>().target = player;
 
             GameHandler.instance.AddAliveEnemyToCounter();
         }

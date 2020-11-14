@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8708434735658219179}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 1678672131997836161}
   - component: {fileID: 6457510380687490194}
   - component: {fileID: -6015093396767393930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RangeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.335
   m_Pitch: 1
   Loop: 0
   Mute: 0

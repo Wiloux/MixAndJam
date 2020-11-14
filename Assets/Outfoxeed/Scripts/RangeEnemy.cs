@@ -11,19 +11,19 @@ public class RangeEnemy : EnemyAI
         AttackAction = GetPlayerInsight;
         SecondAction = null;
     }
-    void GetPlayerInsight()
+    public void GetPlayerInsight()
     {
         Vector2 targetDir = (target.position - transform.position).normalized;
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, targetDir, attackRange);
-        Debug.Log(hit.transform.name);
+      //  Debug.Log(hit.transform.name);
         if(null != hit)
             if (hit.transform.CompareTag("Player")){Shoot(targetDir);}
         else ChasePlayer();
     }
     void Shoot(Vector2 direction)
     {
-        Debug.Log("Shoot");
+       // Debug.Log("Shoot");
         animator.SetBool("isAttacking", true);
         // Set time for next attack
         SetNextAttackTime();

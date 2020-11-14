@@ -758,7 +758,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0d27ce4f8fb6b1849b65fe87c2fb953c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f72eab1a045df2043823c0182be93d9a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4024,26 +4024,50 @@ MonoBehaviour:
   loopTimesSinceStart: 0
   loopsLeftUntilNextBeat: 0
   AllDifferentLoops:
-  - LoopTime: 4
+  - LoopTime: 8
     BeatType: 0
     numberofBeats: 4
-  - LoopTime: 4
-    BeatType: 1
+  - LoopTime: 7
+    BeatType: 5
     numberofBeats: 4
-  - LoopTime: 4
-    BeatType: 2
+  - LoopTime: 1
+    BeatType: 0
+    numberofBeats: 4
+  - LoopTime: 8
+    BeatType: 0
     numberofBeats: 4
   - LoopTime: 4
     BeatType: 3
     numberofBeats: 4
   - LoopTime: 4
-    BeatType: 4
+    BeatType: 2
     numberofBeats: 4
-  - LoopTime: 4
+  - LoopTime: 1
+    BeatType: 1
+    numberofBeats: 4
+  - LoopTime: 1
     BeatType: 5
     numberofBeats: 4
-  - LoopTime: 4
+  - LoopTime: 1
+    BeatType: 1
+    numberofBeats: 4
+  - LoopTime: 1
+    BeatType: 5
+    numberofBeats: 4
+  - LoopTime: 1
+    BeatType: 1
+    numberofBeats: 4
+  - LoopTime: 1
+    BeatType: 5
+    numberofBeats: 4
+  - LoopTime: 1
+    BeatType: 1
+    numberofBeats: 4
+  - LoopTime: 7
     BeatType: 6
+    numberofBeats: 4
+  - LoopTime: 1
+    BeatType: 0
     numberofBeats: 4
   player: {fileID: 0}
   beatTest: {fileID: 1357400584}

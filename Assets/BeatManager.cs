@@ -19,9 +19,13 @@ public class BeatManager : MonoBehaviour
     public BeatTest beatTest;
     Animator anim;
 
+    public static BeatManager instance;
+  //  public List<RangeEnemy> RangeEnemies = new List<RangeEnemy>();
+    
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         loopsLeftUntilNextBeat = AllDifferentLoops[0].LoopTime;
 
         anim = GetComponent<Animator>();
@@ -69,6 +73,10 @@ public class BeatManager : MonoBehaviour
 
     public void PlaysBeat(int i)
     {
+        //foreach (RangeEnemy enai in RangeEnemies)
+        //{
+        //    enai.GetPlayerInsight();
+        //}
         player.ChooseAttackType(i);
         beatTest.BeatChecker(i);
     }
