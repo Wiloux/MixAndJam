@@ -21,8 +21,8 @@ public class GameHandler : MonoBehaviour
     public void AddScreenVisibleEnemyToCounter(){screenVisibleEnemyCounter++;}
     public void RemoveScreenVisibleEnemyToCounter(){screenVisibleEnemyCounter--;}
 
-    private void Update() {
-        Debug.Log("Alive Enemy Counter = " + aliveEnemyCounter);
-        Debug.Log("Screen Visible Enemy Counter = " + screenVisibleEnemyCounter);
-    }
+    // private void Update() {
+    //     Debug.Log("Alive Enemy Counter = " + aliveEnemyCounter);
+    //     Debug.Log("Screen Visible Enemy Counter = " + screenVisibleEnemyCounter);
+    // }
 }
