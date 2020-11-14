@@ -161,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isDead", true);
         GetComponent<AudioSource>().PlayOneShot(death);
         Camera.main.GetComponent<AudioSource>().Stop();
+        GameHandler.instance.DisplayGameOver();
         isDead = true;
     }
 
