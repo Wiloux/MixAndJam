@@ -164,14 +164,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efadd31aaea0f4287aee1b79bc80f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   dashRange: 2
   dashCancelRange: 3
   dashForce: 5
   attackRange: 1.5
   attackCooldown: 2.5
+  target: {fileID: 0}
   speed: 300
   nextWaypointDistance: 2
+  deathParticles: {fileID: 1259006223267488828, guid: eb27b02eeb576b04499113a4575b97a8,
+    type: 3}
+  isDead: 0
   animator: {fileID: 1678672131997836161}
 --- !u!95 &1678672131997836161
 Animator:

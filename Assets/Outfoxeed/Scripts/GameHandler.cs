@@ -12,8 +12,8 @@ public class GameHandler : MonoBehaviour
     // Enemies Counter 
     public int aliveEnemyCounter = 0;
     public int GetAliveEnemyCounter(){return aliveEnemyCounter;}
-    public void AddAliveEnnemyToCounter(){aliveEnemyCounter++;}
-    public void RemoveAliveEnnemyToCounter(){aliveEnemyCounter--;}
+    public void AddAliveEnemyToCounter(){aliveEnemyCounter++;}
+    public void RemoveAliveEnemyToCounter(){aliveEnemyCounter--;}
 
     // Visible Enemies Counter
     public int screenVisibleEnemyCounter = 0;
