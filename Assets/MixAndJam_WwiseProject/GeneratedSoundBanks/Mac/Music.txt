@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	1370002010	SimpleBassDrum			\Default Work Unit\Music\SimpleBassDrum	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	227890267	SimpleBassDrum	C:\Users\migue\Desktop\Mix and Game Jam\test\MixAndJam\Assets\MixAndJam_WwiseProject\.cache\Mac\SFX\SimpleBassDrum_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\BassDrum\SimpleBassDrum\SimpleBassDrum		88264
-
