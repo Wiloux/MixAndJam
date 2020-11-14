@@ -56,28 +56,30 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        float distance = Vector2.Distance(target.position, transform.position);
-        if (distance < attackRange)
+        if(!isDead)
         {
-            if (Time.time > nextAttackTime)
+            float distance = Vector2.Distance(target.position, transform.position);
+            if (distance < attackRange)
             {
-                Attack();
+                if (Time.time > nextAttackTime)
+                {
+                    Attack();
+                }
+                else ChasePlayer();
             }
-            else ChasePlayer();
-        }
-        else if (distance < dashRange)
-        {
-            if (Time.time > nextAttackTime)
+            else if (distance < dashRange)
             {
-                Dash();
+                if (Time.time > nextAttackTime)
+                {
+                    Dash();
+                }
+                else ChasePlayer();
             }
-            else ChasePlayer();
+            else
+            {
+                ChasePlayer();
+            }     
         }
-        else
-        {
-            ChasePlayer();
-        }     
     }
 
     private void Dash()
