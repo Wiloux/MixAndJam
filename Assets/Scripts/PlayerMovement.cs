@@ -88,14 +88,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void ChooseAttackType(int i)
     {
-        switch (i)
+        if (!isDead)
         {
-            case 1:
-                OnKickShoot();
-                break;
-            case 0:
-                OnKickSword();
-                break;
+            switch (i)
+            {
+                case 1:
+                    OnKickShoot();
+                    break;
+                case 0:
+                    OnKickSword();
+                    break;
+            }
         }
     }
     public GameObject Slash;
@@ -148,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         Slash.SetActive(false);
     }
 
+    public AudioClip death;
     public void OnPlayerDeath()
     {
         rb.velocity = Vector3.zero;
@@ -155,6 +159,8 @@ public class PlayerMovement : MonoBehaviour
         GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(particles, 5f);
         anim.SetBool("isDead", true);
+        GetComponent<AudioSource>().PlayOneShot(death);
+        Camera.main.GetComponent<AudioSource>().Stop();
         isDead = true;
     }
 

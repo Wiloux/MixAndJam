@@ -57,7 +57,7 @@ public class BeatManager : MonoBehaviour
                     i = 0;
                 }
                 loopsLeftUntilNextBeat = AllDifferentLoops[i].LoopTime;
-
+              //  PlaysBeat(1);
                 Debug.Log("New beat!" + AllDifferentLoops[i].BeatType);
                 anim.SetTrigger("Beat" + AllDifferentLoops[i].BeatType.ToString());
         
