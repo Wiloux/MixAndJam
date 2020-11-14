@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentwpn++;
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Dash();
+        }
     }
 
     private void FixedUpdate()
@@ -61,6 +66,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public GameObject Slash;
     public float SlashTime;
+
+    public float DashForce;
+    void Dash()
+    {
+        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = transform.position - MousePos;
+        rb.AddForce(dir * DashForce, ForceMode2D.Impulse);
+    }
 
     void OnKickShoot()
     {
