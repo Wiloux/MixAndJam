@@ -33,7 +33,7 @@ public class WaveSpawner : MonoBehaviour
         {
             Vector3 offset = (UnityEngine.Random.insideUnitCircle).normalized * 3f;
             Vector3 spawnPos = spawnsParent.GetChild(Random.Range(0,spawnsParent.childCount)).position + offset;
-            Debug.Log(spawnPos);
+            //Debug.Log(spawnPos);
 
             GameObject ennemy = Instantiate(ennemyPrefab, spawnPos, Quaternion.identity);
             ennemy.GetComponent<EnemyAI>().target = player;
