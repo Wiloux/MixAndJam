@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    Animator anim;
+    public bool isDead;
+    public GameObject deathParticles;
     public float speed;
     Vector3 tempVect;
 
@@ -15,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -24,18 +28,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
-        tempVect = new Vector3(x, y, 0);
-        tempVect = new Vector2(tempVect.x, tempVect.y).normalized;
-        if (Input.GetMouseButtonDown(1))
+        if (!isDead)
         {
-            currentwpn++;
-        }
+            x = Input.GetAxisRaw("Horizontal");
+            y = Input.GetAxisRaw("Vertical");
+            tempVect = new Vector3(x, y, 0);
+            tempVect = new Vector2(tempVect.x, tempVect.y).normalized;
+            if (Input.GetMouseButtonDown(1))
+            {
+                currentwpn++;
+            }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Dash();
+            if (Input.GetMouseButtonDown(0) && !isDashing)
+            {
+                Dash();
+            }
         }
     }
 
@@ -47,8 +54,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector3.zero;
+            if (!isDashing)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
+
+        if (isDead) { rb.velocity = Vector3.zero; }
     }
 
 
@@ -68,11 +80,22 @@ public class PlayerMovement : MonoBehaviour
     public float SlashTime;
 
     public float DashForce;
+    public float DashTime;
+    public bool isDashing;
+
     void Dash()
     {
+        StartCoroutine(DashCoro());
+    }
+
+    IEnumerator DashCoro()
+    {
+        isDashing = true;
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = transform.position - MousePos;
-        rb.AddForce(dir * DashForce, ForceMode2D.Impulse);
+        rb.AddForce(-dir.normalized * DashForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(DashTime);
+        isDashing = false;
     }
 
     void OnKickShoot()
@@ -108,6 +131,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnPlayerDeath()
     {
+        rb.velocity = Vector3.zero;
+        GetComponent<Collider2D>().enabled = false;
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 5f);
+        anim.SetBool("isDead", true);
+        isDead = true;
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            OnPlayerDeath();
+        }
     }
 }

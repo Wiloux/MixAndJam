@@ -881,7 +881,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -901,13 +901,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e4cc307feddf4986331e949aa596b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
+  deathParticles: {fileID: 1259006223267488828, guid: eb27b02eeb576b04499113a4575b97a8,
+    type: 3}
   speed: 10
   maxwpn: 2
   bulletGameObject: {fileID: 6937578276826923034, guid: 4babef89fa8687244b20ff6bffbfeb1f,
     type: 3}
   Slash: {fileID: 874669407}
   SlashTime: 0.2
-  DashForce: 0
+  DashForce: 20
+  DashTime: 0.2
+  isDashing: 0
 --- !u!61 &899595137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1511,8 +1516,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857289033}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.185, z: -0.20268151}
-  m_LocalScale: {x: 0.7558579, y: 3.6583521, z: 0.2362056}
+  m_LocalPosition: {x: 0, y: 0.267, z: -0.20268151}
+  m_LocalScale: {x: 1.6345426, y: 3.6583521, z: 0.2362056}
   m_Children: []
   m_Father: {fileID: 874669408}
   m_RootOrder: 0
