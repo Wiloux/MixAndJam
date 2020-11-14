@@ -12,7 +12,6 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 0.75f;
     public float attackCooldown = 2.5f;
     private float nextAttackTime = 0;
-    private bool isDashing;
 
     // Movements Vars
     public Transform target;
@@ -53,7 +52,6 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
-
     }
 
     // Update is called once per frame
@@ -66,11 +64,7 @@ public class EnemyAI : MonoBehaviour
             {
                 if (Time.time > nextAttackTime)
                 {
-                    // Attack
-                    Debug.Log("Attack");
-                    animator.SetBool("isAttacking", true);
-                    // Set time for next attack
-                    nextAttackTime = Time.time + attackCooldown;
+                    Attack();
                 }
                 else ChasePlayer();
             }
@@ -78,12 +72,7 @@ public class EnemyAI : MonoBehaviour
             {
                 if (Time.time > nextAttackTime)
                 {
-                    // Dash + attack
-                    isDashing = true;
-                    animator.SetBool("isAttacking", true);
-                    rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
-                    // Set time for next attack
-                    nextAttackTime = Time.time + attackCooldown;
+                    Dash();
                 }
                 else ChasePlayer();
             }
@@ -92,14 +81,20 @@ public class EnemyAI : MonoBehaviour
         else if (!isDead) OnDeath();
     }
 
-    public void OnDeath()
+    private void Dash()
     {
-        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(particles, 5f);
-        animator.SetBool("isDead", true);
-        GameHandler.instance.RemoveAliveEnemyToCounter();
-        isDead = true;
-        Destroy(gameObject, 5f);
+        // Dash
+        rb.AddForce((target.position - transform.position).normalized * dashForce, ForceMode2D.Impulse);
+        // Attack
+        Attack();
+    }
+    private void Attack()
+    {
+        // Attack
+        Debug.Log("Attack");
+        animator.SetBool("isAttacking", true);
+        // Set time for next attack
+        nextAttackTime = Time.time + attackCooldown;
     }
 
     private void ChasePlayer()
@@ -121,6 +116,17 @@ public class EnemyAI : MonoBehaviour
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if(distance < nextWaypointDistance) currentWaypoint++;
     }
+    public void OnDeath()
+    {
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 5f);
+        animator.SetBool("isDead", true);
+        GameHandler.instance.RemoveAliveEnemyToCounter();
+        isDead = true;
+        Destroy(gameObject, 5f);
+    }
+
+    #region MonobehaviourMethods
 
     private void OnBecameVisible() {
         GameHandler.instance.AddScreenVisibleEnemyToCounter();
@@ -128,4 +134,5 @@ public class EnemyAI : MonoBehaviour
     private void OnBecameInvisible() {
         GameHandler.instance.RemoveScreenVisibleEnemyToCounter();
     }
+    #endregion
 }
