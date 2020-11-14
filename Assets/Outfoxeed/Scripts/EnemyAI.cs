@@ -104,14 +104,19 @@ public class EnemyAI : MonoBehaviour
     }
     public void OnDeath()
     {
+        // Delete properties, speed, collider
         rb.velocity = Vector3.zero;
         GetComponent<CircleCollider2D>().enabled = false;
-        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
-        Destroy(particles, 5f);
-        animator.SetBool("isDead", true);
-        GameHandler.instance.RemoveAliveEnemyToCounter();
         isDead = true;
         Destroy(gameObject, 5f);
+        // Blood particles
+        GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 5f);
+        // Animator
+        animator.SetBool("isDead", true);
+        // Game Handler
+        GameHandler.instance.RemoveAliveEnemyToCounter();
+        GameHandler.instance.AddScore(1);
     }
 
     #region MonobehaviourMethods

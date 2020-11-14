@@ -7,7 +7,30 @@ public class GameHandler : MonoBehaviour
     public static GameHandler instance;
     private void Awake() {
         instance = this;
+        highScore = PlayerPrefs.GetInt("HighScore",0);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
+        if (isGamePaused) { canvas.SetActive(true);}
+        else canvas.SetActive(false);
+    }
+
+    // Pause menu 
+    public GameObject canvas;
+    public bool isGamePaused = false;
+    public bool IsGamePaused() { return isGamePaused; }
+    public void ResumeGame() { isGamePaused = !isGamePaused; if (!isGamePaused) Time.timeScale = 1f; else Time.timeScale = 0f; }
+
+    // Score
+    public int score = 0;
+    public int GetScore() { return score; }
+    public void AddScore(int plus) { score += plus; }
+    public void RemoveScore(int minus) { score += minus; }
+        // Highscore
+    [SerializeField] protected int highScore;
+    public void SaveHighScore() { if (score > highScore) { PlayerPrefs.SetInt("HighScore", score); highScore = score; } }
 
     // Enemies Counter 
     public int aliveEnemyCounter = 0;
@@ -25,4 +48,5 @@ public class GameHandler : MonoBehaviour
     //     Debug.Log("Alive Enemy Counter = " + aliveEnemyCounter);
     //     Debug.Log("Screen Visible Enemy Counter = " + screenVisibleEnemyCounter);
     // }
+
 }
