@@ -13,8 +13,8 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
-        if (isGamePaused) { canvas.SetActive(true);}
-        else canvas.SetActive(false);
+        if (isGamePaused) { canvas.SetActive(true); Camera.main.GetComponent<AudioSource>().Pause(); }
+        else { canvas.SetActive(false); Camera.main.GetComponent<AudioSource>().UnPause(); }
     }
 
     // Pause menu 
