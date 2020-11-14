@@ -9,8 +9,23 @@ public class Sword : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            CameraScript.instance.shakeDuration = 0.1f;
-            Destroy(collision.gameObject);
+            if (!collision.GetComponent<EnemyAI>().isDead)
+            {
+                CameraScript.instance.shakeDuration = 0.1f;
+                collision.GetComponent<EnemyAI>().OnDeath();
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            if (!collision.GetComponent<EnemyAI>().isDead)
+            {
+                CameraScript.instance.shakeDuration = 0.1f;
+                collision.GetComponent<EnemyAI>().OnDeath();
+            }
         }
     }
 }

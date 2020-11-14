@@ -18,8 +18,11 @@ public class Bullet : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            CameraScript.instance.shakeDuration = 0.1f;
-            Destroy(collision.gameObject);
+            if (!collision.GetComponent<EnemyAI>().isDead)
+            {
+                CameraScript.instance.shakeDuration = 0.1f;
+                collision.GetComponent<EnemyAI>().OnDeath();
+            }
         }
 
         if(collision.tag != "Player")

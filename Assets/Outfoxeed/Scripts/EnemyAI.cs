@@ -23,7 +23,6 @@ public class EnemyAI : MonoBehaviour
 
     //Death vars
     public GameObject deathParticles;
-    public bool isDying;
     public bool isDead;
 
     // Components vars
@@ -38,16 +37,16 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         isDead = false;
 
-        InvokeRepeating("UpdatePath",0,0.25f);
+        InvokeRepeating("UpdatePath", 0, 0.25f);
     }
 
     void UpdatePath()
     {
-        if(seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
+        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
     void OnPathComplete(Path p)
     {
-        if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
@@ -57,28 +56,28 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isDying)
+
+        float distance = Vector2.Distance(target.position, transform.position);
+        if (distance < attackRange)
         {
-            float distance = Vector2.Distance(target.position, transform.position);
-            if (distance < attackRange)
+            if (Time.time > nextAttackTime)
             {
-                if (Time.time > nextAttackTime)
-                {
-                    Attack();
-                }
-                else ChasePlayer();
-            }
-            else if (distance < dashRange)
-            {
-                if (Time.time > nextAttackTime)
-                {
-                    Dash();
-                }
-                else ChasePlayer();
+                Attack();
             }
             else ChasePlayer();
         }
-        else if (!isDead) OnDeath();
+        else if (distance < dashRange)
+        {
+            if (Time.time > nextAttackTime)
+            {
+                Dash();
+            }
+            else ChasePlayer();
+        }
+        else
+        {
+            ChasePlayer();
+        }     
     }
 
     private void Dash()
@@ -100,12 +99,13 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         animator.SetBool("isAttacking", false);
-        if(path == null)return;
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (path == null) return;
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
-        }else
+        }
+        else
         {
             reachedEndOfPath = false;
         }
@@ -114,10 +114,12 @@ public class EnemyAI : MonoBehaviour
         rb.AddForce(direction * speed * Time.deltaTime);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if(distance < nextWaypointDistance) currentWaypoint++;
+        if (distance < nextWaypointDistance) currentWaypoint++;
     }
     public void OnDeath()
     {
+        rb.velocity = Vector3.zero;
+        GetComponent<CircleCollider2D>().enabled = false;
         GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
         Destroy(particles, 5f);
         animator.SetBool("isDead", true);
@@ -128,10 +130,12 @@ public class EnemyAI : MonoBehaviour
 
     #region MonobehaviourMethods
 
-    private void OnBecameVisible() {
+    private void OnBecameVisible()
+    {
         GameHandler.instance.AddScreenVisibleEnemyToCounter();
     }
-    private void OnBecameInvisible() {
+    private void OnBecameInvisible()
+    {
         GameHandler.instance.RemoveScreenVisibleEnemyToCounter();
     }
     #endregion
