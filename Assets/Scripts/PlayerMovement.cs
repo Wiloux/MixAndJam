@@ -20,10 +20,22 @@ public class PlayerMovement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        //musicSource = GetComponent<AudioSource>();
+        //  musicSource.Play();
     }
 
     float x;
     float y;
+
+
+
+    //the total number of loops completed since the looping clip first started
+  //  public int completedLoops = 0;
+
+    //The current position of the song within the loop in beats.
+    public float loopPositionInBeats;
+
+    public float loopPositionInAnalog;
 
     // Update is called once per frame
     void Update()
@@ -34,17 +46,27 @@ public class PlayerMovement : MonoBehaviour
             y = Input.GetAxisRaw("Vertical");
             tempVect = new Vector3(x, y, 0);
             tempVect = new Vector2(tempVect.x, tempVect.y).normalized;
-            if (Input.GetMouseButtonDown(1))
-            {
-                currentwpn++;
-            }
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    currentwpn++;
+            //}
 
             if (Input.GetMouseButtonDown(0) && !isDashing)
             {
                 Dash();
             }
         }
+
+        //if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+        //    completedLoops++;
+
+     //   loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+
+
+
     }
+
+
 
     private void FixedUpdate()
     {
@@ -64,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void ChooseAttackType()
+    public void ChooseAttackType(int i)
     {
-        switch (currentwpn % maxwpn)
+        switch (i)
         {
             case 1:
                 OnKickShoot();
@@ -90,10 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashCoro()
     {
-        isDashing = true;
-        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = transform.position - MousePos;
-        rb.AddForce(-dir.normalized * DashForce, ForceMode2D.Impulse);
+        rb.AddForce(tempVect.normalized * DashForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(DashTime);
         isDashing = false;
     }
@@ -141,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             OnPlayerDeath();
         }
