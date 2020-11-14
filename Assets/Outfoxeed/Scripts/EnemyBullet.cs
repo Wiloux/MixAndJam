@@ -14,16 +14,12 @@ public class EnemyBullet : MonoBehaviour
         rb.velocity = dir * spd;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Player")
-    //    {
-    //        // Tuer joueur
-    //    }
-
-    //    if (collision.tag != "Ennemy")
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag != "Ennemy")
+        {
+            Debug.Log(collision.transform.tag);
+            Destroy(gameObject);
+        }
+    }
 }
