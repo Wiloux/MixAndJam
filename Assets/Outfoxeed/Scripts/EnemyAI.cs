@@ -33,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     public Action AttackAction;
     public Action SecondAction;
 
+    public AudioClip deathsfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +99,9 @@ public class EnemyAI : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 directionp = ((Vector2)target.position - rb.position).normalized;
+        animator.SetFloat("h", directionp.x);
+        animator.SetFloat("v", directionp.y);
         rb.AddForce(direction * speed * Time.deltaTime);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -115,6 +119,8 @@ public class EnemyAI : MonoBehaviour
         Destroy(particles, 5f);
         // Animator
         animator.SetBool("isDead", true);
+
+        GetComponent<AudioSource>().PlayOneShot(deathsfx);
         // Game Handler
         GameHandler.instance.RemoveAliveEnemyToCounter();
         GameHandler.instance.AddScore(1);
