@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 050f5dc26e9431a44a3e5f75f2620ba7
+  - enabled: 1
+    path: Assets/Scenes/Outfoxeed.unity
+    guid: ab2d5de525ebce246a348dbe06e1b429
   m_configObjects: {}

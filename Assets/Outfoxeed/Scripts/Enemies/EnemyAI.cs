@@ -121,7 +121,7 @@ public class EnemyAI : MonoBehaviour
     {
         // Delete properties, speed, collider
         rb.velocity = Vector3.zero;
-        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
         isDead = true;
         Destroy(gameObject, 5f);
         // Blood particles
