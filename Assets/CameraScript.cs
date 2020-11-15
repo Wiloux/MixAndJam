@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public static CameraScript instance;
+  //  public static CameraScript instance;
 
     public GameObject followTarget;
 
@@ -22,7 +22,7 @@ public class CameraScript : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+       // instance = this;
     }
 
 

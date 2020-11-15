@@ -18,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+      //  BeatManager.instance.RestartGame();
         //musicSource = GetComponent<AudioSource>();
         //  musicSource.Play();
     }

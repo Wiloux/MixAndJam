@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    CameraScript camscript;
+    private void Start()
+    {
+      camscript = Camera.main.GetComponent<CameraScript>();
+    }
     // Start is called before the first frame update
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -11,7 +16,7 @@ public class Sword : MonoBehaviour
         {
             if (!collision.GetComponent<EnemyAI>().isDead)
             {
-                CameraScript.instance.shakeDuration = 0.1f;
+              camscript.shakeDuration = 0.1f;
                 collision.GetComponent<EnemyAI>().OnDeath();
             }
         }
@@ -23,7 +28,7 @@ public class Sword : MonoBehaviour
         {
             if (!collision.GetComponent<EnemyAI>().isDead)
             {
-                CameraScript.instance.shakeDuration = 0.1f;
+                camscript.shakeDuration = 0.1f;
                 collision.GetComponent<EnemyAI>().OnDeath();
             }
         }

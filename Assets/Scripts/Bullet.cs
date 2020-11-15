@@ -7,25 +7,27 @@ public class Bullet : MonoBehaviour
     public Vector2 dir;
     public float spd;
     public Rigidbody2D rb;
+    CameraScript camscript;
 
     private void Start()
     {
+        camscript = Camera.main.GetComponent<CameraScript>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = dir * spd;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             if (!collision.GetComponent<EnemyAI>().isDead)
             {
-                CameraScript.instance.shakeDuration = 0.1f;
+                camscript.shakeDuration = 0.1f;
                 collision.GetComponent<EnemyAI>().OnDeath();
             }
         }
 
-        if(collision.tag != "Player")
+        if (collision.tag != "Player")
         {
             Destroy(gameObject);
         }

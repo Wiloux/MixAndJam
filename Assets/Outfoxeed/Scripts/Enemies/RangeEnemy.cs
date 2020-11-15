@@ -16,7 +16,7 @@ public class RangeEnemy : EnemyAI
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, targetDir, attackRange);
       //  Debug.Log(hit.transform.name);
-        if(null != hit)
+        if(hit.transform != null)
             if (hit.transform.CompareTag("Player")){Shoot(targetDir);}
         else ChasePlayer();
     }
