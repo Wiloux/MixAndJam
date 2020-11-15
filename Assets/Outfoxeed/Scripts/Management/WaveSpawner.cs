@@ -15,6 +15,7 @@ public class WaveSpawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     public int wave = 1;
+    public int numberOfEnnemiesInFirstWave = 5;
     public Transform spawnsParent;
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnWave()
     {
-        for(int i = 0; i < wave; i++)
+        for(int i = 0; i < numberOfEnnemiesInFirstWave + (wave-1)*3; i++)
         {
             Vector3 offset = (UnityEngine.Random.insideUnitCircle).normalized * 3f;
             Vector3 spawnPos = spawnsParent.GetChild(Random.Range(0,spawnsParent.childCount)).position + offset;

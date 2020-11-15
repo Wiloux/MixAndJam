@@ -19,7 +19,7 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        waveDisplayer.text = StringToDisplay("Wave", WaveSpawner.instance.wave);
+        waveDisplayer.text = StringToDisplay("Wave", WaveSpawner.instance.wave - 1);
         aliveEnemiesCounterDisplayer.text = StringToDisplay("Ennemies alive", GameHandler.instance.aliveEnemyCounter);
         scoreDisplayer.text = StringToDisplay("Score", GameHandler.instance.score);
 
