@@ -40,7 +40,8 @@ public class BeatManager : MonoBehaviour
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
        // secsBtwActions = 0.1f;
-        nextActionTime = 0;
+        nextActionTime = 0;i = 0;
+
         beatTimesSinceStart = 0;
         loopTimesSinceStart = 0;
         loopsLeftUntilNextBeat = AllDifferentLoops[0].LoopTime;
@@ -69,7 +70,7 @@ public class BeatManager : MonoBehaviour
           
             //     beatNumbersSoFar += secPerBeat * Time.deltaTime;
 
-            if (Time.time > nextActionTime)
+            if (Time.timeSinceLevelLoad > nextActionTime)
             {
                 beatTimesSinceStart++;
                 if (beatTimesSinceStart % beatsPerLoop == 0)
@@ -101,7 +102,7 @@ public class BeatManager : MonoBehaviour
             }
         } else 
         {
-
+            i = 0;
             nextActionTime = 0;
             beatTimesSinceStart = 0;
             //secsBtwActions = 0.1f;
