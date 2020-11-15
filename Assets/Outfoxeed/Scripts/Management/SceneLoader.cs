@@ -21,7 +21,10 @@ public class SceneLoader : MonoBehaviour
     {
         GameHandler.instance.isGamePaused = false;
         AudioSource audio = Camera.main.GetComponent<AudioSource>();
-        audio?.Stop();
-        audio?.Play();
+        if(audio != null)
+        {
+            audio.Stop();
+            audio.Play();
+        }
     }
 }
