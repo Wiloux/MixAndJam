@@ -62,6 +62,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        animator.SetFloat("spd", 0f);
         if (!isDead)
         {
             bool canAttack = CanAttack();
@@ -88,6 +89,7 @@ public class EnemyAI : MonoBehaviour
     protected void ChasePlayer()
     {
         animator.SetBool("isAttacking", false);
+        animator.SetFloat("spd", 1f);
         if (path == null) return;
         if (currentWaypoint >= path.vectorPath.Count)
         {
