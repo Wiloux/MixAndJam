@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
     {
         camscript = Camera.main.GetComponent<CameraScript>();
         rb = GetComponent<Rigidbody2D>();
+        Quaternion PointerQ = Quaternion.LookRotation(Vector3.forward, dir);
+        transform.rotation = PointerQ;
         rb.velocity = dir * spd;
     }
 
@@ -20,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            if (!collision.GetComponent<EnemyAI>().isDead)
+            if (collision.GetComponent<EnemyAI>() != null && !collision.GetComponent<EnemyAI>().isDead)
             {
                 camscript.shakeDuration = 0.1f;
                 collision.GetComponent<EnemyAI>().OnDeath();

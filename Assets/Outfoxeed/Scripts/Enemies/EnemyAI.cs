@@ -82,6 +82,15 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Vector2 directionp = ((Vector2)target.position - rb.position).normalized;
+        if (directionp != Vector2.zero)
+        {
+            animator.SetFloat("h", directionp.x);
+            animator.SetFloat("v", directionp.y);
+        }
+    }
     protected bool CanAttack() { return Time.time > nextAttackTime; }
     protected void SetNextAttackTime() { nextAttackTime = Time.time + attackCooldown; }
 
@@ -100,9 +109,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 directionp = ((Vector2)target.position - rb.position).normalized;
-        animator.SetFloat("h", directionp.x);
-        animator.SetFloat("v", directionp.y);
+      
         rb.AddForce(direction * speed * Time.deltaTime);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
