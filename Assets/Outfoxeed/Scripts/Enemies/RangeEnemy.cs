@@ -5,7 +5,6 @@ using UnityEngine;
 public class RangeEnemy : EnemyAI
 {
     public GameObject projectilePrefab;
-    public Transform firePoint;
     private void Awake()
     {
         AttackAction = GetPlayerInsight;
@@ -28,7 +27,7 @@ public class RangeEnemy : EnemyAI
         // Set time for next attack
         SetNextAttackTime();
 
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.GetComponent<EnemyBullet>().dir = direction;
     }
 }
