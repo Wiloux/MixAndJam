@@ -297,6 +297,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19203165}
   m_CullTransparentMesh: 0
+--- !u!212 &21350929 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1104825094314311890, guid: 443449aa3e9c71b41a6baaa7229896cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385359585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &41584074
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95734
+  m_Name: pb_Mesh-452598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -808,7 +814,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95702
+  m_Name: pb_Mesh-452582
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1002,7 +1008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 47.59999}
+  m_AnchoredPosition: {x: 0, y: 47.599976}
   m_SizeDelta: {x: 245.88208, y: 51.965637}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &278490302
@@ -1999,7 +2005,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95676
+  m_Name: pb_Mesh-452424
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2904,7 +2910,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95766
+  m_Name: pb_Mesh-452638
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4524,7 +4530,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95718
+  m_Name: pb_Mesh-452602
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5459,6 +5465,12 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3319743431063365042, guid: 443449aa3e9c71b41a6baaa7229896cc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51ad89a7cf9b9974ca4139f8d1386631,
+        type: 3}
     - target: {fileID: 3319743431067395613, guid: 443449aa3e9c71b41a6baaa7229896cc,
         type: 3}
       propertyPath: m_Color.r
@@ -7785,7 +7797,8 @@ MonoBehaviour:
   - LoopTime: 1
     BeatType: 0
     numberofBeats: 4
-  dancefloor: {fileID: 2103485483}
+  dancefloor: {fileID: 21350929}
+  dancefloor2: {fileID: 1843743727}
   player: {fileID: 0}
   beatTest: {fileID: 1357400584}
 --- !u!4 &1642369113
@@ -8204,6 +8217,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818865866}
   m_CullTransparentMesh: 0
+--- !u!212 &1843743727 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 475207526645596589, guid: 443449aa3e9c71b41a6baaa7229896cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385359585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1855107616
 GameObject:
   m_ObjectHideFlags: 0
@@ -8695,7 +8714,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-95750
+  m_Name: pb_Mesh-452614
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9153,9 +9172,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091763403}
   m_CullTransparentMesh: 0
---- !u!212 &2103485483 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3319743431063365042, guid: 443449aa3e9c71b41a6baaa7229896cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1385359585}
-  m_PrefabAsset: {fileID: 0}
