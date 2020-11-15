@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         //musicSource = GetComponent<AudioSource>();
         //  musicSource.Play();
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //the total number of loops completed since the looping clip first started
-  //  public int completedLoops = 0;
+    //  public int completedLoops = 0;
 
     //The current position of the song within the loop in beats.
     public float loopPositionInBeats;
@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         {
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");
+
+
             tempVect = new Vector3(x, y, 0);
             tempVect = new Vector2(tempVect.x, tempVect.y).normalized;
             //if (Input.GetMouseButtonDown(1))
@@ -56,15 +58,24 @@ public class PlayerMovement : MonoBehaviour
                 Dash();
             }
         }
+        else
+        {
+            x = 0;
+            y = 0;
+        }
+        if (tempVect != Vector3.zero)
+        {
+            anim.SetFloat("X", x);
+            anim.SetFloat("Y", y);
+        }
+            //if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
+            //    completedLoops++;
 
-        //if (songPositionInBeats >= (completedLoops + 1) * beatsPerLoop)
-        //    completedLoops++;
-
-     //   loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
+            //   loopPositionInBeats = songPositionInBeats - completedLoops * beatsPerLoop;
 
 
 
-    }
+        }
 
 
 
@@ -72,12 +83,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (x != 0 || y != 0)
         {
+            anim.SetFloat("spd", 1f);
             rb.velocity = new Vector2(tempVect.x * speed, tempVect.y * speed);
         }
         else
         {
             if (!isDashing)
             {
+                anim.SetFloat("spd", 0.01f);
                 rb.velocity = Vector3.zero;
             }
         }
