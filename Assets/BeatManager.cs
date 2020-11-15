@@ -15,13 +15,14 @@ public class BeatManager : MonoBehaviour
     public List<LoopBeat> AllDifferentLoops = new List<LoopBeat>();
     int i = 0;
 
+    public SpriteRenderer dancefloor;
     public PlayerMovement player;
     public BeatTest beatTest;
     Animator anim;
 
     public static BeatManager instance;
-  //  public List<RangeEnemy> RangeEnemies = new List<RangeEnemy>();
-    
+    //  public List<RangeEnemy> RangeEnemies = new List<RangeEnemy>();
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -61,10 +62,13 @@ public class BeatManager : MonoBehaviour
                     i = 0;
                 }
                 loopsLeftUntilNextBeat = AllDifferentLoops[i].LoopTime;
-              //  PlaysBeat(1);
+                //  PlaysBeat(1);
+                dancefloor.color = new Color(Random.Range(0f, 1f),
+                                             Random.Range(0f, 1f),
+                                             Random.Range(0f, 1f));
                 Debug.Log("New beat!" + AllDifferentLoops[i].BeatType);
                 anim.SetTrigger("Beat" + AllDifferentLoops[i].BeatType.ToString());
-        
+
             }
             nextActionTime += secsBtwActions;
             // execute block of code here
