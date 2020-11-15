@@ -714,7 +714,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1548
+  m_Name: pb_Mesh-53862
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -944,7 +944,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1532
+  m_Name: pb_Mesh-53846
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2136,7 +2136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1432
+  m_Name: pb_Mesh-53748
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2552,6 +2552,12 @@ Transform:
   m_Father: {fileID: 5149065}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &733618797 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 475207526645596589, guid: 443449aa3e9c71b41a6baaa7229896cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385359585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746837957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,7 +3192,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1592
+  m_Name: pb_Mesh-53906
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3981,7 +3987,7 @@ GameObject:
   - component: {fileID: 981790954}
   - component: {fileID: 981790953}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4808,7 +4814,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1552
+  m_Name: pb_Mesh-53866
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8071,9 +8077,9 @@ MonoBehaviour:
   - LoopTime: 1
     BeatType: 0
     numberofBeats: 4
-  dancefloor: {fileID: 2103485483}
+  dancefloor: {fileID: 1990387237}
+  dancefloor2: {fileID: 733618797}
   player: {fileID: 0}
-  beatTest: {fileID: 1357400584}
 --- !u!4 &1642369113
 Transform:
   m_ObjectHideFlags: 0
@@ -8984,7 +8990,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1564
+  m_Name: pb_Mesh-53878
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9142,6 +9148,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!212 &1990387237 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1104825094314311890, guid: 443449aa3e9c71b41a6baaa7229896cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1385359585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2001190603
 GameObject:
   m_ObjectHideFlags: 0
@@ -9444,9 +9456,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091763403}
   m_CullTransparentMesh: 0
---- !u!212 &2103485483 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3319743431063365042, guid: 443449aa3e9c71b41a6baaa7229896cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1385359585}
-  m_PrefabAsset: {fileID: 0}
