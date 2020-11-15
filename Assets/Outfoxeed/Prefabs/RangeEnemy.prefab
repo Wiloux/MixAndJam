@@ -107,7 +107,7 @@ MonoBehaviour:
     type: 3}
   isDead: 0
   animator: {fileID: 0}
-  deathsfx: {fileID: 8300000, guid: 84584fd026d723e4e9fa713d1de17246, type: 3}
+  deathsfx: {fileID: 8300000, guid: 76cf83128dc98c2498ed39fb00d585c2, type: 3}
   projectilePrefab: {fileID: 6937578276826923034, guid: 2e2109251f2351e4db24100daf5c48ef,
     type: 3}
 --- !u!82 &-6015093396767393930

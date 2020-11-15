@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     int currentwpn;
 
     public GameObject bulletGameObject;
+
+    public AudioClip punchfx;
+    public AudioClip gunfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -137,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnKickShoot()
     {
+        GetComponent<AudioSource>().PlayOneShot(gunfx);
         Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = transform.position - MousePos;
         GameObject bullet = Instantiate(bulletGameObject, transform.position, Quaternion.identity);
@@ -145,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnKickSword()
     {
+        GetComponent<AudioSource>().PlayOneShot(punchfx);
         StartCoroutine(SlashCoro());
     }
 

@@ -189,7 +189,7 @@ MonoBehaviour:
     type: 3}
   isDead: 0
   animator: {fileID: 0}
-  deathsfx: {fileID: 8300000, guid: 84584fd026d723e4e9fa713d1de17246, type: 3}
+  deathsfx: {fileID: 8300000, guid: 76cf83128dc98c2498ed39fb00d585c2, type: 3}
   dashForce: 5
 --- !u!50 &5897417540979609362
 Rigidbody2D:
