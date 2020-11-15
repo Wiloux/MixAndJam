@@ -16,6 +16,7 @@ public class BeatManager : MonoBehaviour
     int i = 0;
 
     public SpriteRenderer dancefloor;
+    public SpriteRenderer dancefloor2;
     public PlayerMovement player;
     public BeatTest beatTest;
     Animator anim;
@@ -66,6 +67,9 @@ public class BeatManager : MonoBehaviour
                 dancefloor.color = new Color(Random.Range(0f, 1f),
                                              Random.Range(0f, 1f),
                                              Random.Range(0f, 1f));
+                dancefloor2.color = new Color(Random.Range(0f, 1f),
+                                           Random.Range(0f, 1f),
+                                           Random.Range(0f, 1f));
                 Debug.Log("New beat!" + AllDifferentLoops[i].BeatType);
                 anim.SetTrigger("Beat" + AllDifferentLoops[i].BeatType.ToString());
 
