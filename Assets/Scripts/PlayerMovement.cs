@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     Vector3 tempVect;
 
+    public FloatingJoystick moveJoystick;
+    public FloatingJoystick aimJoystick;
+
     public int maxwpn;
     int currentwpn;
 
@@ -44,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDead)
         {
-            x = Input.GetAxisRaw("Horizontal");
-            y = Input.GetAxisRaw("Vertical");
+            x = moveJoystick.Horizontal;
+            y = moveJoystick.Vertical;
 
 
             tempVect = new Vector3(x, y, 0);
@@ -137,10 +140,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnKickShoot()
     {
-        Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = transform.position - MousePos;
+        //Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 dir = transform.position - MousePos;
+        Vector2 dir = aimJoystick.Direction.normalized;
+        if (dir == Vector2.zero) dir = new Vector2(1, 0);
         GameObject bullet = Instantiate(bulletGameObject, transform.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().dir = -dir.normalized;
+        //bullet.GetComponent<Bullet>().dir = -dir.normalized;
+        bullet.GetComponent<Bullet>().dir = dir;
     }
 
     void OnKickSword()
@@ -154,9 +160,11 @@ public class PlayerMovement : MonoBehaviour
         while (time <= 1f)
         {
             Slash.SetActive(true);
-            Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = transform.position - MousePos;
-            Quaternion PointerQ = Quaternion.LookRotation(Vector3.forward, -direction);
+            //Vector3 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //Vector2 direction = transform.position - MousePos;
+            Vector2 direction = aimJoystick.Direction.normalized;
+            if (direction == Vector2.zero) direction = new Vector2(1, 0);
+            Quaternion PointerQ = Quaternion.LookRotation(Vector3.forward, direction);
             //PointerQ.y = -PointerQ.y;
             //  Vector3 North = new Vector3(0, 0, GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles.y);
             Slash.transform.rotation = PointerQ;
@@ -169,6 +177,10 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip death;
     public void OnPlayerDeath()
     {
+        // Disable joysticks
+        moveJoystick.gameObject.SetActive(false);
+        aimJoystick.gameObject.SetActive(false);
+
         rb.velocity = Vector3.zero;
         GetComponent<Collider2D>().enabled = false;
         GameObject particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
